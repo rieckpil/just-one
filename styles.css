@@ -93,3 +93,87 @@
         transform: rotateY(0deg);
     }
 }
+
+/* Confetti Animation */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall linear infinite;
+}
+
+.confetti:nth-child(odd) {
+    background: #ff6b6b;
+    animation-duration: 3s;
+    animation-delay: 0s;
+}
+
+.confetti:nth-child(even) {
+    background: #4ecdc4;
+    animation-duration: 2.5s;
+    animation-delay: 0.5s;
+}
+
+.confetti:nth-child(3n) {
+    background: #45b7d1;
+    animation-duration: 3.5s;
+    animation-delay: 1s;
+}
+
+.confetti:nth-child(4n) {
+    background: #96ceb4;
+    animation-duration: 2.8s;
+    animation-delay: 1.5s;
+}
+
+.confetti:nth-child(5n) {
+    background: #ffd93d;
+    animation-duration: 3.2s;
+    animation-delay: 0.8s;
+}
+
+.confetti:nth-child(6n) {
+    background: #ff9ff3;
+    animation-duration: 2.7s;
+    animation-delay: 1.2s;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Birthday message animation */
+.birthday-message {
+    animation: birthday-bounce 2s ease-in-out infinite;
+}
+
+@keyframes birthday-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+

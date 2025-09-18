@@ -175,8 +175,10 @@ class JustOneGame {
         this.currentGame = null;
         this.timer = null;
         this.timeRemaining = 90;
+        this.confettiInterval = null;
         this.loadGame();
         this.initializeEventListeners();
+        this.startConfetti();
     }
 
     initializeEventListeners() {
@@ -195,9 +197,11 @@ class JustOneGame {
         $('#game-screen').addClass('hidden');
         $('#game-over').addClass('hidden');
         $('#deck-selection').removeClass('hidden');
+        this.startConfetti();
     }
 
     startNewGame(deckType) {
+        this.stopConfetti();
         const allWords = this.gameData[deckType];
         const shuffledWords = this.shuffleArray([...allWords]);
         const selectedCards = shuffledWords.slice(0, 13);
@@ -249,18 +253,18 @@ class JustOneGame {
                 <div class="word-item word-item-${index + 1} bg-white p-3 md:p-4 rounded-lg border-l-4 shadow-sm hover:shadow-md transition-all cursor-pointer" data-index="${index + 1}">
                     <div class="flex items-center">
                         <span class="text-xl md:text-2xl font-bold text-gray-400 mr-3 flex-shrink-0">${index + 1}</span>
-                        <div class="flex-1 text-left">
-                            <div class="text-sm md:text-base font-medium text-gray-800 mb-1">
-                                <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">EN</span>
-                                ${card.en}
+                        <div class="flex-1 grid grid-cols-3 gap-2 text-left">
+                            <div class="text-xs md:text-sm font-medium text-gray-800">
+                                <div class="bg-blue-100 text-blue-800 px-1 py-0.5 rounded text-xs text-center mb-1">EN</div>
+                                <div class="text-sm md:text-base">${card.en}</div>
                             </div>
-                            <div class="text-sm md:text-base font-medium text-gray-800 mb-1">
-                                <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs mr-2">DE</span>
-                                ${card.de}
+                            <div class="text-xs md:text-sm font-medium text-gray-800">
+                                <div class="bg-red-100 text-red-800 px-1 py-0.5 rounded text-xs text-center mb-1">DE</div>
+                                <div class="text-sm md:text-base">${card.de}</div>
                             </div>
-                            <div class="text-sm md:text-base font-medium text-gray-800">
-                                <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-2">FR</span>
-                                ${card.fr}
+                            <div class="text-xs md:text-sm font-medium text-gray-800">
+                                <div class="bg-green-100 text-green-800 px-1 py-0.5 rounded text-xs text-center mb-1">FR</div>
+                                <div class="text-sm md:text-base">${card.fr}</div>
                             </div>
                         </div>
                     </div>
@@ -382,15 +386,47 @@ class JustOneGame {
         localStorage.setItem('justOneGame', JSON.stringify(this.currentGame));
     }
 
+    startConfetti() {
+        const container = $('#confetti-container');
+        container.removeClass('hidden');
+
+        this.confettiInterval = setInterval(() => {
+            for (let i = 0; i < 3; i++) {
+                const confetti = $('<div class="confetti"></div>');
+                confetti.css({
+                    left: Math.random() * 100 + 'vw',
+                    top: '-10px',
+                    backgroundColor: `hsl(${Math.random() * 360}, 70%, 60%)`
+                });
+                container.append(confetti);
+
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+        }, 100);
+    }
+
+    stopConfetti() {
+        if (this.confettiInterval) {
+            clearInterval(this.confettiInterval);
+            this.confettiInterval = null;
+        }
+        $('#confetti-container').addClass('hidden').empty();
+    }
+
     loadGame() {
         const savedGame = localStorage.getItem('justOneGame');
         if (savedGame) {
             try {
                 this.currentGame = JSON.parse(savedGame);
                 if (this.currentGame && this.currentGame.cards && this.currentGame.currentCardIndex < this.currentGame.cards.length) {
+                    this.stopConfetti();
                     this.showGameScreen();
                     this.displayCurrentCard();
                 } else if (this.currentGame && this.currentGame.currentCardIndex >= this.currentGame.cards.length) {
+                    this.stopConfetti();
                     this.endGame();
                 }
             } catch (e) {

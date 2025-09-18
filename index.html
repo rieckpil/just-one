@@ -25,20 +25,41 @@
 
         <!-- Game Selection Screen -->
         <div id="deck-selection" class="flex-1 flex flex-col justify-center p-4 md:p-8">
+            <!-- Confetti Container -->
+            <div id="confetti-container" class="confetti-container hidden"></div>
+
             <div class="max-w-sm mx-auto w-full">
+                <!-- Birthday Message -->
+                <div class="text-center mb-6">
+                    <h1 class="text-2xl md:text-4xl font-bold text-yellow-300 birthday-message mb-2">🎉 Happy Birthday Mux! 🎂</h1>
+                    <p class="text-sm md:text-base text-white/80">Time to celebrate with Just One!</p>
+                </div>
+
                 <h2 class="text-xl md:text-2xl font-semibold text-center mb-8 text-white">Choose a Deck</h2>
                 <div class="space-y-4">
                     <button class="deck-btn w-full bg-gray-600/90 backdrop-blur-sm text-white py-6 px-6 rounded-xl text-lg md:text-xl font-medium hover:bg-gray-700 transition-all duration-200 active:scale-95 shadow-lg" data-deck="standard">
-                        Just One Standard
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-2xl">🃏</span>
+                            <span>Just One Standard</span>
+                        </div>
                     </button>
                     <button class="deck-btn w-full bg-blue-500/90 backdrop-blur-sm text-white py-6 px-6 rounded-xl text-lg md:text-xl font-medium hover:bg-blue-600 transition-all duration-200 active:scale-95 shadow-lg" data-deck="mux">
-                        Just One Mux Edition
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-2xl">🍺</span>
+                            <span>Just One Mux Edition</span>
+                        </div>
                     </button>
                     <button class="deck-btn w-full bg-green-500/90 backdrop-blur-sm text-white py-6 px-6 rounded-xl text-lg md:text-xl font-medium hover:bg-green-600 transition-all duration-200 active:scale-95 shadow-lg" data-deck="lucie">
-                        Just One Lucie Edition
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-2xl">🔞</span>
+                            <span>Just One Lucie Edition</span>
+                        </div>
                     </button>
                     <button class="deck-btn w-full bg-orange-500/90 backdrop-blur-sm text-white py-6 px-6 rounded-xl text-lg md:text-xl font-medium hover:bg-orange-600 transition-all duration-200 active:scale-95 shadow-lg" data-deck="crete">
-                        Just One Crete Edition
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-2xl">🇬🇷</span>
+                            <span>Just One Crete Edition</span>
+                        </div>
                     </button>
                 </div>
             </div>
