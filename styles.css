@@ -1,0 +1,95 @@
+/* Custom styles for Just One game */
+.word-item {
+    transition: all 0.2s ease;
+    cursor: pointer;
+    min-height: 60px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.word-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.word-item:active {
+    transform: scale(0.98);
+}
+
+.word-item.selected {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+    border: 3px solid #000000;
+    border-radius: 12px;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    .word-item {
+        min-height: 80px;
+        padding: 12px !important;
+    }
+
+    .word-item:hover {
+        transform: none;
+    }
+
+    .word-item:active {
+        transform: scale(0.95);
+        background-color: rgba(59, 130, 246, 0.1);
+    }
+}
+
+.word-item-1 {
+    border-left: 4px solid #3b82f6; /* Blue */
+}
+
+.word-item-2 {
+    border-left: 4px solid #10b981; /* Green */
+}
+
+.word-item-3 {
+    border-left: 4px solid #ef4444; /* Red */
+}
+
+.word-item-4 {
+    border-left: 4px solid #f59e0b; /* Orange */
+}
+
+.word-item-5 {
+    border-left: 4px solid #8b5cf6; /* Purple */
+}
+
+/* Animation for screen transitions */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card flip animation */
+.card-flip {
+    animation: cardFlip 0.6s ease-in-out;
+}
+
+@keyframes cardFlip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
