@@ -27,8 +27,8 @@
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
     .word-item {
-        min-height: 80px;
-        padding: 12px !important;
+        min-height: 60px;
+        padding: 8px !important;
     }
 
     .word-item:hover {

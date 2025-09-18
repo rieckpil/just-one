@@ -267,21 +267,21 @@ class JustOneGame {
 
         fiveRandomWords.forEach((card, index) => {
             const wordElement = $(`
-                <div class="word-item word-item-${index + 1} bg-white rounded-lg border-l-4 shadow-sm hover:shadow-md transition-all cursor-pointer" data-index="${index + 1}">
+                <div class="word-item word-item-${index + 1} bg-white rounded-md border-l-4 shadow-sm hover:shadow-md transition-all cursor-pointer p-2 md:p-3" data-index="${index + 1}">
                     <div class="flex items-center">
-                        <span class="text-xl md:text-2xl font-bold text-gray-400 mr-3 flex-shrink-0">${index + 1}</span>
-                        <div class="flex-1 grid grid-cols-3 gap-2 text-left">
-                            <div class="text-xs md:text-sm font-medium text-gray-800">
-                                <div class="bg-blue-100 text-blue-800 px-1 py-0.5 rounded text-xs text-center mb-1">EN</div>
-                                <div class="text-sm md:text-base">${card.en}</div>
+                        <span class="text-lg md:text-xl font-bold text-gray-400 mr-2 flex-shrink-0">${index + 1}</span>
+                        <div class="flex-1 grid grid-cols-3 gap-1 text-left">
+                            <div class="text-xs font-medium text-gray-800">
+                                <div class="bg-blue-100 text-blue-800 px-1 py-0.5 rounded text-xs text-center mb-0.5">EN</div>
+                                <div class="text-xs md:text-sm">${card.en}</div>
                             </div>
-                            <div class="text-xs md:text-sm font-medium text-gray-800">
-                                <div class="bg-red-100 text-red-800 px-1 py-0.5 rounded text-xs text-center mb-1">DE</div>
-                                <div class="text-sm md:text-base">${card.de}</div>
+                            <div class="text-xs font-medium text-gray-800">
+                                <div class="bg-red-100 text-red-800 px-1 py-0.5 rounded text-xs text-center mb-0.5">DE</div>
+                                <div class="text-xs md:text-sm">${card.de}</div>
                             </div>
-                            <div class="text-xs md:text-sm font-medium text-gray-800">
-                                <div class="bg-green-100 text-green-800 px-1 py-0.5 rounded text-xs text-center mb-1">FR</div>
-                                <div class="text-sm md:text-base">${card.fr}</div>
+                            <div class="text-xs font-medium text-gray-800">
+                                <div class="bg-green-100 text-green-800 px-1 py-0.5 rounded text-xs text-center mb-0.5">FR</div>
+                                <div class="text-xs md:text-sm">${card.fr}</div>
                             </div>
                         </div>
                     </div>
