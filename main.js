@@ -267,7 +267,7 @@ class JustOneGame {
 
         fiveRandomWords.forEach((card, index) => {
             const wordElement = $(`
-                <div class="word-item word-item-${index + 1} bg-white p-3 md:p-4 rounded-lg border-l-4 shadow-sm hover:shadow-md transition-all cursor-pointer" data-index="${index + 1}">
+                <div class="word-item word-item-${index + 1} bg-white rounded-lg border-l-4 shadow-sm hover:shadow-md transition-all cursor-pointer" data-index="${index + 1}">
                     <div class="flex items-center">
                         <span class="text-xl md:text-2xl font-bold text-gray-400 mr-3 flex-shrink-0">${index + 1}</span>
                         <div class="flex-1 grid grid-cols-3 gap-2 text-left">
@@ -338,8 +338,11 @@ class JustOneGame {
                 this.currentGame.currentCardIndex++;
                 break;
             case 'wrong':
-                // Remove only the current card
-                this.currentGame.cards.splice(this.currentGame.currentCardIndex, 1);
+                // Move to next card and remove one card from the end of the deck
+                this.currentGame.currentCardIndex++;
+                if (this.currentGame.cards.length > 0) {
+                    this.currentGame.cards.pop(); // Remove last card from deck
+                }
                 break;
         }
 
