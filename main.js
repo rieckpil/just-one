@@ -183,7 +183,7 @@ class JustOneGame {
 
     initializeEventListeners() {
         $('#new-game-btn').on('click', () => this.showDeckSelection());
-        $('.deck-btn').on('click', (e) => this.startNewGame($(e.target).data('deck')));
+        $('.deck-btn').on('click', (e) => this.startNewGame($(e.currentTarget).data('deck')));
         $('#correct-btn').on('click', () => this.handleAnswer('correct'));
         $('#skip-btn').on('click', () => this.handleAnswer('skip'));
         $('#wrong-btn').on('click', () => this.handleAnswer('wrong'));
@@ -193,7 +193,8 @@ class JustOneGame {
     showDeckSelection() {
         this.stopTimer();
         this.currentGame = null;
-        this.saveGame();
+        // Clear any saved game data when starting fresh
+        localStorage.removeItem('justOneGame');
         $('#game-screen').addClass('hidden');
         $('#game-over').addClass('hidden');
         $('#deck-selection').removeClass('hidden');
@@ -203,6 +204,14 @@ class JustOneGame {
     startNewGame(deckType) {
         this.stopConfetti();
         const allWords = this.gameData[deckType];
+
+        // Safety check for deck data
+        if (!allWords || !Array.isArray(allWords) || allWords.length < 13) {
+            console.error(`Invalid or insufficient deck data for '${deckType}'`);
+            alert(`Sorry, the ${deckType} deck is not available or has insufficient words.`);
+            return;
+        }
+
         const shuffledWords = this.shuffleArray([...allWords]);
         const selectedCards = shuffledWords.slice(0, 13);
 
@@ -245,6 +254,14 @@ class JustOneGame {
 
         // Get 5 different random words from the current deck
         const allWords = this.gameData[this.currentGame.deckType];
+
+        // Safety check for deck data
+        if (!allWords || !Array.isArray(allWords) || allWords.length < 5) {
+            console.error(`Invalid deck data for '${this.currentGame.deckType}'`);
+            this.endGame();
+            return;
+        }
+
         const shuffledAllWords = this.shuffleArray([...allWords]);
         const fiveRandomWords = shuffledAllWords.slice(0, 5);
 
@@ -303,7 +320,7 @@ class JustOneGame {
 
     updateGameStats() {
         $('#score').text(this.currentGame.score);
-        $('#cards-remaining').text(this.currentGame.cards.length - this.currentGame.currentCardIndex);
+        $('#cards-remaining').text(this.currentGame.cards.length - this.currentGame.currentCardIndex - 1);
     }
 
     handleAnswer(result) {
@@ -420,17 +437,35 @@ class JustOneGame {
         const savedGame = localStorage.getItem('justOneGame');
         if (savedGame) {
             try {
-                this.currentGame = JSON.parse(savedGame);
-                if (this.currentGame && this.currentGame.cards && this.currentGame.currentCardIndex < this.currentGame.cards.length) {
-                    this.stopConfetti();
-                    this.showGameScreen();
-                    this.displayCurrentCard();
-                } else if (this.currentGame && this.currentGame.currentCardIndex >= this.currentGame.cards.length) {
-                    this.stopConfetti();
-                    this.endGame();
+                const parsedGame = JSON.parse(savedGame);
+
+                // Validate the saved game data before using it
+                if (parsedGame &&
+                    parsedGame.deckType &&
+                    parsedGame.cards &&
+                    Array.isArray(parsedGame.cards) &&
+                    typeof parsedGame.currentCardIndex === 'number' &&
+                    typeof parsedGame.score === 'number' &&
+                    this.gameData[parsedGame.deckType]) {
+
+                    this.currentGame = parsedGame;
+
+                    if (this.currentGame.currentCardIndex < this.currentGame.cards.length) {
+                        this.stopConfetti();
+                        this.showGameScreen();
+                        this.displayCurrentCard();
+                    } else {
+                        this.stopConfetti();
+                        this.endGame();
+                    }
+                } else {
+                    console.warn('Invalid saved game data, clearing localStorage');
+                    localStorage.removeItem('justOneGame');
+                    this.currentGame = null;
                 }
             } catch (e) {
                 console.error('Error loading saved game:', e);
+                localStorage.removeItem('justOneGame');
                 this.currentGame = null;
             }
         }
