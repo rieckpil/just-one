@@ -1,0 +1,71 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Confetti -->
+  <circle cx="150" cy="100" r="8" fill="#FFD700" opacity="0.8"/>
+  <circle cx="300" cy="150" r="6" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="500" cy="80" r="7" fill="#00CED1" opacity="0.8"/>
+  <circle cx="750" cy="120" r="5" fill="#FFB347" opacity="0.6"/>
+  <circle cx="950" cy="90" r="8" fill="#98FB98" opacity="0.8"/>
+  <circle cx="1100" cy="140" r="6" fill="#DDA0DD" opacity="0.7"/>
+
+  <circle cx="100" cy="500" r="6" fill="#FF69B4" opacity="0.7"/>
+  <circle cx="250" cy="550" r="8" fill="#00CED1" opacity="0.8"/>
+  <circle cx="450" cy="520" r="5" fill="#FFD700" opacity="0.8"/>
+  <circle cx="700" cy="580" r="7" fill="#98FB98" opacity="0.8"/>
+  <circle cx="900" cy="530" r="6" fill="#DDA0DD" opacity="0.7"/>
+  <circle cx="1050" cy="560" r="8" fill="#FFB347" opacity="0.6"/>
+
+  <!-- Main Text -->
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#FEF3C7" filter="url(#glow)">
+    🎉 Happy Birthday Max! 🎂
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="350" font-family="Arial, sans-serif" font-size="36" font-weight="normal" text-anchor="middle" fill="#FFFFFF" opacity="0.9">
+    Let's play Just One!
+  </text>
+
+  <!-- Game Cards -->
+  <rect x="200" y="400" width="120" height="80" rx="10" fill="#FFFFFF" opacity="0.9"/>
+  <text x="260" y="445" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#3B82F6">🃏</text>
+  <text x="260" y="465" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#1F2937">Standard</text>
+
+  <rect x="350" y="400" width="120" height="80" rx="10" fill="#FFFFFF" opacity="0.9"/>
+  <text x="410" y="445" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#3B82F6">🍺</text>
+  <text x="410" y="465" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#1F2937">Mux</text>
+
+  <rect x="500" y="400" width="120" height="80" rx="10" fill="#FFFFFF" opacity="0.9"/>
+  <text x="560" y="445" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#3B82F6">💕</text>
+  <text x="560" y="465" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#1F2937">Romantic</text>
+
+  <rect x="650" y="400" width="120" height="80" rx="10" fill="#FFFFFF" opacity="0.9"/>
+  <text x="710" y="445" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#3B82F6">🇬🇷</text>
+  <text x="710" y="465" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#1F2937">Crete</text>
+
+  <!-- Balloons -->
+  <ellipse cx="950" cy="300" rx="25" ry="35" fill="#FF69B4" opacity="0.8"/>
+  <line x1="950" y1="335" x2="950" y2="380" stroke="#FFFFFF" stroke-width="2"/>
+
+  <ellipse cx="1000" cy="280" rx="25" ry="35" fill="#FFD700" opacity="0.8"/>
+  <line x1="1000" y1="315" x2="1000" y2="360" stroke="#FFFFFF" stroke-width="2"/>
+
+  <ellipse cx="1050" cy="300" rx="25" ry="35" fill="#00CED1" opacity="0.8"/>
+  <line x1="1050" y1="335" x2="1050" y2="380" stroke="#FFFFFF" stroke-width="2"/>
+</svg>
